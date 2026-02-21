@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "io.github.c_caelum.focalworks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "MixinDatagenMain"
+  ],
+  "plugin": "io.github.c_caelum.focalworks.mixin.FocalworksMixinConfigPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
