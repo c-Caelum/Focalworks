@@ -6,11 +6,11 @@ import io.github.c_caelum.focalworks.forge.datagen.ForgeFocalworksDatagen
 import net.minecraftforge.fml.common.Mod
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
-@Mod(Focalworks.MODID)
+@Mod(Focalworks.MOD_ID)
 class ForgeFocalworks {
     init {
         MOD_BUS.apply {
-            EventBuses.registerModEventBus(Focalworks.MODID, this)
+            EventBuses.registerModEventBus(Focalworks.MOD_ID, this)
             addListener(ForgeFocalworksClient::init)
             addListener(ForgeFocalworksDatagen::init)
             addListener(ForgeFocalworksServer::init)

@@ -6,7 +6,9 @@
   "client": [
   ],
   "mixins": [
-    "MixinDatagenMain"
+    "MixinDatagenMain",
+    "MixinOpRead",
+    "MixinOpWrite"
   ],
   "plugin": "io.github.c_caelum.focalworks.mixin.FocalworksMixinConfigPlugin",
   "injectors": {

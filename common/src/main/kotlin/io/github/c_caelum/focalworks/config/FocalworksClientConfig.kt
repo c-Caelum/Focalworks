@@ -39,7 +39,7 @@ object FocalworksClientConfig {
         }
     }
 
-    @Config(name = Focalworks.MODID)
+    @Config(name = Focalworks.MOD_ID)
     class GlobalConfig : GlobalData() {
         @Category("server")
         @TransitiveObject

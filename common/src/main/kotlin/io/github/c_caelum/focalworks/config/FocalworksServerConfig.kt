@@ -46,7 +46,7 @@ object FocalworksServerConfig {
         syncedServerConfig = serverConfig
     }
 
-    @Config(name = Focalworks.MODID)
+    @Config(name = Focalworks.MOD_ID)
     class GlobalConfig(
         @Category("server")
         @TransitiveObject
