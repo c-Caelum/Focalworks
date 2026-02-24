@@ -11,8 +11,6 @@ import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerRead;
-import at.petrak.hexcasting.xplat.IXplatAbstractions;
-import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 
 import org.spongepowered.asm.mixin.injection.At;
