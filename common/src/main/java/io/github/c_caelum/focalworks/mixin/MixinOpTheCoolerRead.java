@@ -14,11 +14,12 @@ import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerRead;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @Mixin(OpTheCoolerRead.class)
@@ -31,16 +32,6 @@ public class MixinOpTheCoolerRead {
             CallbackInfoReturnable<OperationResult> cir
     ) {
 
-        CastingEnvironment.HeldItemInfo info = env.getHeldItemToOperateOn(stack ->  {
-            ADIotaHolder dataHolder = IXplatAbstractions.INSTANCE.findDataHolder(stack);
-            return dataHolder != null && (dataHolder.readIota(env.getWorld()) != null || dataHolder.emptyIota() != null)
-            && stack.hasTag() && stack.getOrCreateTag().contains("riggedread");});
-        if (info != null) {
-            ADIotaHolder datumHolder = IXplatAbstractions.INSTANCE.findDataHolder(info.stack());
-            ListIota hex =  (ListIota)IotaType.deserialize((CompoundTag) info.stack().getTag().get("riggedread"),env.getWorld());
-            FrameEvaluate frame = new FrameEvaluate(hex.getList(), true);
-            cir.setReturnValue(new OperationResult(cir.getReturnValue().component1(),cir.getReturnValue().component2(),continuation.pushFrame(frame),cir.getReturnValue().component4()));
-        }
     }
 
 }

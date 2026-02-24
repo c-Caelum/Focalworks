@@ -61,7 +61,9 @@ public class MixinOpWrite {
         ADIotaHolder datumHolder = IXplatAbstractions.INSTANCE.findDataHolder(info.stack());
         if (datumHolder == null ) {throw MishapBadOffhandItem.of(info.stack(),"iota.write");}
         ListIota hex =  (ListIota) IotaType.deserialize((CompoundTag) info.stack().getTag().get("riggedwrite"),env.getWorld());
-        hex.getList().forEach(iota -> vm.queueExecuteAndWrapIota(iota,env.getWorld()));
+        List<Iota> temp = new ArrayList<Iota>();
+        hex.getList().forEach(temp::add);
+        vm.queueExecuteAndWrapIotas(temp,env.getWorld());
         img = vm.getImage();
         cont = continuation;
         return original.call(env,img,cont);
