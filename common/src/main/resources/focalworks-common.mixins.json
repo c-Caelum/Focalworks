@@ -8,7 +8,9 @@
   "mixins": [
     "MixinDatagenMain",
     "MixinOpRead",
-    "MixinOpWrite"
+    "MixinOpWrite",
+    "MixinOpTheCoolerRead",
+    "MixinOpTheCoolerWrite"
   ],
   "plugin": "io.github.c_caelum.focalworks.mixin.FocalworksMixinConfigPlugin",
   "injectors": {

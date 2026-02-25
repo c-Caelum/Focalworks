@@ -11,7 +11,7 @@ import at.petrak.hexcasting.api.utils.putTag
 import at.petrak.hexcasting.xplat.IXplatAbstractions
 
 
-object OpRigRead : ConstMediaAction {
+object OpRigWrite : ConstMediaAction {
     override val argc = 1
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
         val hex = ListIota(args.getList(0,argc))
