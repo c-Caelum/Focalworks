@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "package": "caelum.focalworks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinIotaHolderItem"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

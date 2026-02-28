@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "focalworks",
+	"version": "${version}",
+	"name": "Focalworks",
+	"description": "An addon introducing several features to work with foci.",
+	"authors": [
+		"Caelum"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/focalworks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"caelum.focalworks.Focalworks"
+		],
+		"client": [
+			"caelum.focalworks.FocalworksClient"
+		]
+	},
+	"mixins": [
+		"focalworks.mixins.json",
+		{
+			"config": "focalworks.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+    "suggests": {
+      "ioticblocks": ">=1.0.2"
+    }
+}

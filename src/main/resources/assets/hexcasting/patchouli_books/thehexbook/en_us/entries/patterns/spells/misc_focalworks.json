@@ -1,0 +1,22 @@
+{
+  "name": "focalworks.book.patterns.spells.misc_page",
+  "icon": "hexcasting:spellbook",
+  "category": "hexcasting:patterns/spells",
+  "advancement": "hexcasting:root",
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "focalworks.book.patterns.spells.misc_page.explainer0",
+      "text": "focalworks.book.patterns.spells.misc_page.explainer0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:flip_spellbook",
+      "anchor": "focalworks:flip_spellbook",
+      "input": "item, num",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.misc_page.flip_spellbook"
+    }
+  ]
+}

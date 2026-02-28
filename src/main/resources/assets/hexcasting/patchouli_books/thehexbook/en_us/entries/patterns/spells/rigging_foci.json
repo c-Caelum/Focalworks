@@ -1,0 +1,43 @@
+{
+  "name": "focalworks.book.patterns.spells.rigging_foci",
+  "icon": "minecraft:tripwire_hook",
+  "category": "hexcasting:patterns/spells",
+  "advancement": "hexcasting:root",
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "focalworks.book.patterns.spells.rigging_foci.explainer0",
+      "text": "focalworks.book.patterns.spells.rigging_foci.explainer0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:rig_read",
+      "anchor": "focalworks:rig_read",
+      "input": "item, hex",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.rigging_foci.rig_read"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:rig_write",
+      "anchor": "focalworks:rig_write",
+      "input": "item, hex",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.rigging_foci.rig_write"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "focalworks.book.patterns.spells.rigging_foci.explainer1",
+      "text": "focalworks.book.patterns.spells.rigging_foci.explainer1"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:crack_rig",
+      "anchor": "focalworks:crack_rig",
+      "input": "item",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.rigging_foci.crack_rig"
+    }
+  ]
+}
