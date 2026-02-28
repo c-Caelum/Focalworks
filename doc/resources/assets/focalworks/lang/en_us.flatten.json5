@@ -1,8 +1,0 @@
-{
-  hexdoc: {
-    focalworks: {
-      title: "Focalworks Book",
-      description: "Focalworks addon for Hex Casting",
-    },
-  }
-}
