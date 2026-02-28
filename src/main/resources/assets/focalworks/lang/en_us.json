@@ -14,5 +14,6 @@
   "focalworks.rig_read": "Rig Read",
   "focalworks.rig_write": "Rig Write",
   "focalworks.crack_rig": "Crack Rig",
-  "focalworks.flip_spellbook": "Flip Spellbook"
+  "focalworks.flip_spellbook": "Flip Spellbook",
+  "hexcasting.action.focalworks.crack_rig": "Crack Rig"
 }

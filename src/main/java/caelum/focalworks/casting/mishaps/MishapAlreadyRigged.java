@@ -34,6 +34,6 @@ public class MishapAlreadyRigged extends Mishap {
 
     @Override
     protected @Nullable Component errorMessage(@NotNull CastingEnvironment castingEnvironment, @NotNull Mishap.Context context) {
-        throw new RuntimeException();
+        return Component.translatable("already_rigged");
     }
 }

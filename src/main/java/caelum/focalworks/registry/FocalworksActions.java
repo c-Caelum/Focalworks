@@ -15,8 +15,8 @@ public class FocalworksActions {
     public static void init() {
         register("rig_read","wwaqwqqqwqwqqwwqqeqqwwqq",HexDir.EAST,new OpRigRead());
         register("rig_write","wwdeweeeweweewweeqeewwee",HexDir.EAST,new OpRigWrite());
-        register("crack_rig","wwaqwqqqwqedwewwewdawdwwwwdw",HexDir.EAST,new OpRigWrite());
-        register("flip_spellbook","wwaqwqqqwqeawqwwqwadaeqqea",HexDir.EAST,new OpCrackRig());
+        register("crack_rig","wwaqwqqqwqedwewwewdawdwwwwdw",HexDir.EAST,new OpCrackRig());
+        register("flip_spellbook","wwdeweeewewdqeeqdqeewwee",HexDir.EAST,new OpFlipSpellbook());
     }
     private static ActionRegistryEntry register(
             String name,
