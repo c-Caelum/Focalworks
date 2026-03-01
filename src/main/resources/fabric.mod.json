@@ -36,6 +36,7 @@
 		"fabric-api": "*"
 	},
     "suggests": {
-      "ioticblocks": ">=1.0.2"
+      "ioticblocks": ">=1.0.2",
+      "lapisworks": ">=1.5.7"
     }
 }

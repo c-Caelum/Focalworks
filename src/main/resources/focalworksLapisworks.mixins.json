@@ -10,5 +10,5 @@
   "overwrites": {
     "requireAnnotations": true
   },
-  "plugin": "caelum.focalworks.mixin.plugins.IoticblocksMCP"
+  "plugin": "caelum.focalworks.mixin.plugins.LapisworksMCP"
 }
