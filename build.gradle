@@ -1,13 +1,13 @@
 plugins {
 	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
-    //id 'at.petra-k.pkpcpbp.PKJson5Plugin'
+    id 'at.petra-k.pkpcpbp.PKJson5Plugin' version "${pkpcpbp_ver}"
 }
 
-/*pkJson5 {
+pkJson5 {
     autoProcessJson5 = true
     autoProcessJson5Flattening = true
-}*/
+}
 
 version = project.mod_version
 group = project.maven_group
