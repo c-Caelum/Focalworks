@@ -27,7 +27,8 @@
 		{
 			"config": "focalworks.client.mixins.json",
 			"environment": "client"
-		}
+		},
+       "focalworksIoticBlocks.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.4",
