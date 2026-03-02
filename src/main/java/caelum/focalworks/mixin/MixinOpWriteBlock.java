@@ -1,4 +1,4 @@
-/*package caelum.focalworks.mixin;
+package caelum.focalworks.mixin;
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
 import at.petrak.hexcasting.api.casting.SpellList;
@@ -57,9 +57,8 @@ public class MixinOpWriteBlock {
                 throw MishapBadBlock.of(target,"iota.read");
             }
             SpellList hex = RiggedHexFinder.get_rig_read_vec(target,env.getWorld());
-            vm.queue
             cir.setReturnValue(List.of(datum));
         });
 
     }
-}*/
+}

@@ -5,10 +5,12 @@ import at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.utils.NBTHelper;
+import caelum.focalworks.Focalworks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
@@ -22,9 +24,8 @@ public class RiggedHexFinder {
         if (NBTHelper.contains(tag,"riggedread")) {
             return ((ListIota) IotaType.deserialize((CompoundTag) NBTHelper.get(tag, "riggedread"), world)).getList();
         }
-
-        if (blockEntity instanceof BaseContainerBlockEntity) {
-            return get_rig_read_item(((BaseContainerBlockEntity)blockEntity).getItem(0),world);
+        if (blockEntity instanceof Container) {
+            return get_rig_read_item(((Container)blockEntity).getItem(0),world);
         }
 
         return null;
