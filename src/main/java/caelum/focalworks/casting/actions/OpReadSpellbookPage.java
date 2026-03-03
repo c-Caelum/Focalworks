@@ -5,26 +5,25 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
-import at.petrak.hexcasting.api.casting.iota.EntityIota;
+import at.petrak.hexcasting.api.casting.iota.DoubleIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
-import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
-import static at.petrak.hexcasting.api.casting.OperatorUtils.getList;
-
-import at.petrak.hexcasting.api.casting.iota.IotaType;
-import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
+import at.petrak.hexcasting.api.casting.mishaps.MishapBadItem;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.utils.NBTHelper;
-import caelum.focalworks.casting.mishaps.MishapAlreadyRigged;
-import net.minecraft.nbt.CompoundTag;
+import at.petrak.hexcasting.common.items.storage.ItemSpellbook;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class OpRigWrite implements ConstMediaAction {
-    private static final Integer argc = 2;
+import static at.petrak.hexcasting.api.casting.OperatorUtils.getIntBetween;
+import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
+
+public class OpReadSpellbookPage implements ConstMediaAction {
+    private static final Integer argc = 1;
     @Override
     public int getArgc() {
         return argc;
@@ -37,15 +36,13 @@ public class OpRigWrite implements ConstMediaAction {
     @Override
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> args, @NotNull CastingEnvironment env) throws Mishap {
         ItemEntity entity = getItemEntity(args,0,argc);
-        Iota hex = new ListIota(getList(args,1,argc));
+
         ItemStack stack = entity.getItem();
-        if(NBTHelper.contains(stack,"riggedwrite")) {
-            throw new MishapAlreadyRigged(new EntityIota(entity),false);
-        } else {
-            CompoundTag tag = IotaType.serialize(hex);
-            NBTHelper.put(stack,"riggedwrite",tag);
+        if (!(stack.getItem() instanceof ItemSpellbook)) {
+            throw new MishapBadItem(entity, Component.translatable("spellbook_not_empty"));
         }
-        return List.of();
+
+        return List.of(new DoubleIota(NBTHelper.getInt(stack,"page_idx")));
     }
 
     @Override

@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
+import at.petrak.hexcasting.api.casting.iota.EntityIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
 import static at.petrak.hexcasting.api.casting.OperatorUtils.getList;
@@ -14,6 +15,7 @@ import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.utils.NBTHelper;
+import caelum.focalworks.casting.mishaps.MishapAlreadyRigged;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -37,8 +39,12 @@ public class OpRigRead implements ConstMediaAction {
         ItemEntity entity = getItemEntity(args,0,argc);
         Iota hex = new ListIota(getList(args,1,argc));
         ItemStack stack = entity.getItem();
-        CompoundTag tag = IotaType.serialize(hex);
-        NBTHelper.put(stack,"riggedread",tag);
+        if(NBTHelper.contains(stack,"riggedread")) {
+            throw new MishapAlreadyRigged(new EntityIota(entity),false);
+        } else {
+            CompoundTag tag = IotaType.serialize(hex);
+            NBTHelper.put(stack,"riggedread",tag);
+        }
         return List.of();
     }
 

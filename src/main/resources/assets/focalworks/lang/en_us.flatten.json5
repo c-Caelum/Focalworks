@@ -29,7 +29,7 @@
     rig_read: "Rig Read",
     rig_write: "Rig Write",
     crack_rig: "Crack Focus",
-    flip_spellbook: "Flip Spellbook"
+    flip_spellbook: "Flip Spellbook",
   },
   hexcasting: {
     "action.focalworks:": {
@@ -37,6 +37,18 @@
       rig_write: "Rig Write",
       crack_rig: "Crack Focus",
       flip_spellbook: "Flip Spellbook"
+    },
+    "mishap": {
+      already_rigged: {
+        crack: {
+          "": "The item you attempted to crack is rigged.",
+          "item": "The item %s is rigged."
+        },
+        rigging: {
+          "": "The item you attempted to rig is already rigged.",
+          "item": "The item %s is already rigged."
+        }
+      }
     }
   }
 }

@@ -5,12 +5,14 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
+import at.petrak.hexcasting.api.casting.iota.EntityIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.utils.NBTHelper;
 import caelum.focalworks.casting.mishaps.MishapAlreadyRigged;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +35,7 @@ public class OpCrackRig implements ConstMediaAction {
         ItemEntity entity = getItemEntity(args,0,argc);
         ItemStack stack = entity.getItem();
         if(NBTHelper.contains(stack,"riggedread") || NBTHelper.contains(stack,"riggedwrite")) {
-            throw new MishapAlreadyRigged();
+            throw new MishapAlreadyRigged(new EntityIota(entity),true);
         } else {
             NBTHelper.putInt(stack,"cracked_rig",1);
         }
