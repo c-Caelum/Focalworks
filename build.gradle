@@ -16,6 +16,14 @@ base {
 	archivesName = project.archives_base_name
 }
 
+loom {
+    runs {
+        "client" {
+            programArgs '--username', 'Caelum', '--uuid', 'e44beda7-acf0-4c07-891b-bbb89f9ab537'
+        }
+    }
+}
+
 repositories {
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because

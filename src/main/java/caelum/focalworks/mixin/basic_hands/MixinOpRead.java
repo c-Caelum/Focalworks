@@ -2,6 +2,7 @@ package caelum.focalworks.mixin.basic_hands;
 
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
+import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
@@ -12,6 +13,8 @@ import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.casting.actions.rw.OpRead;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
+import caelum.focalworks.api.RiggedHexFinder;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,9 +35,9 @@ public class MixinOpRead{
             return dataHolder != null && (dataHolder.readIota(env.getWorld()) != null || dataHolder.emptyIota() != null)
                     && stack.hasTag() && stack.getOrCreateTag().contains("riggedread");});
         if (info != null) {
-            if (NBTHelper.contains(info.stack(),"riggedread")) {
-                ListIota hex = (ListIota) IotaType.deserialize((CompoundTag) info.stack().getTag().get("riggedread"), env.getWorld());
-                FrameEvaluate frame = new FrameEvaluate(hex.getList(), true);
+            SpellList hex = RiggedHexFinder.get_rig_item(info.stack(),env.getWorld(),"riggedread");
+            if (hex != null) {
+                FrameEvaluate frame = new FrameEvaluate(hex, true);
                 cir.setReturnValue(new OperationResult(cir.getReturnValue().component1(), cir.getReturnValue().component2(), continuation.pushFrame(frame), cir.getReturnValue().component4()));
             }
         }

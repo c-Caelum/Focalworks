@@ -1,5 +1,6 @@
 {
   focalworks: {
+    spellbook_not_empty: "a spellbook",
     book: {
       patterns: {
         spells: {
@@ -15,7 +16,13 @@
           misc_page: {
             "": "Miscellaneous Focalworking",
             explainer0: "I have discovered a few patterns, but they do not seem to fit into any of my previous categories. To solve this problem whilst keeping them documented, I have placed them here for my convenience.",
-            flip_spellbook: "This pattern takes in a spellbook item entity and a num, and flips the spellbook to that page."
+            flip_spellbook: "This pattern takes in a spellbook item entity and a num, and flips the spellbook to that page.",
+            read_spellbook_page: "This pattern takes in a spellbook item entity and returns the currently selected page."
+          },
+          ioticblocks: {
+            "": "Ioticblocks Focalworking",
+            explainer0: "Recently, I've been dissatisfied with the way my hexes take up much of the stack space just to read one iota from a list. $(l:patterns/readwrite_blocks)Reading/Writing Blocks$(/l) fixes this, but it seems my standard rigged writes still operate on the whole list, making them obsolete. To fix this, I have come up with some specialised patterns to override them.",
+            rig_write_index: "Rigs the write from $(l:patterns/readwrite_blocks#ioticblocks:write/index)Tachygrapher's Gambit$(/l) with the given hex."
           }
         }
       }
@@ -26,17 +33,28 @@
     riggedwrite: {
       onitem: "Rigged Write: %s"
     },
+    riggedwriteindex: {
+      onitem: "Rigged Write Index: %s"
+    },
+    riggedreadindex: {
+      onitem: "Rigged Read Index: %s"
+    },
     rig_read: "Rig Read",
     rig_write: "Rig Write",
     crack_rig: "Crack Focus",
     flip_spellbook: "Flip Spellbook",
+    rig_write_index: "Rig Write Index",
+    rig_read_index: "Rig Read Index"
   },
   hexcasting: {
     "action.focalworks:": {
+      read_spellbook_page: "Read Spellbook Page",
       rig_read: "Rig Read",
       rig_write: "Rig Write",
       crack_rig: "Crack Focus",
-      flip_spellbook: "Flip Spellbook"
+      flip_spellbook: "Flip Spellbook",
+      rig_write_index: "Rig Write Index",
+      rig_read_index: "Rig Read Index"
     },
     "mishap": {
       already_rigged: {

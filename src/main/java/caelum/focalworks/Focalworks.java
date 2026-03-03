@@ -4,8 +4,10 @@ import at.petrak.hexcasting.api.casting.RenderedSpell;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
+import caelum.focalworks.registry.FocalworksIoticblocksActions;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +36,9 @@ public class Focalworks implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
         FocalworksActions.init();
+        if (FabricLoader.getInstance().isModLoaded("ioticblocks")) {
+            FocalworksIoticblocksActions.init();
+        }
 		LOGGER.info("Focalworks' actions registering!");
 	}
     public static int clamp(int val, int min, int max) {

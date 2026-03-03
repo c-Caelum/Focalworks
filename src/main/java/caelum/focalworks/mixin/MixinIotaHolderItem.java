@@ -30,6 +30,14 @@ public interface MixinIotaHolderItem {
                 Component hex = IotaType.getDisplay((CompoundTag) stack.getTag().get("riggedwrite"));
                 components.add(Component.translatable("focalworks.riggedwrite.onitem",hex).withStyle(ChatFormatting.RED));
             }
+            if (stack.hasTag() && stack.getOrCreateTag().contains("riggedwriteindex")) {
+                Component hex = IotaType.getDisplay((CompoundTag) stack.getTag().get("riggedwriteindex"));
+                components.add(Component.translatable("focalworks.riggedwriteindex.onitem",hex).withStyle(ChatFormatting.RED));
+            }
+            if (stack.hasTag() && stack.getOrCreateTag().contains("riggedreadindex")) {
+                Component hex = IotaType.getDisplay((CompoundTag) stack.getTag().get("riggedreadindex"));
+                components.add(Component.translatable("focalworks.riggedreadindex.onitem",hex).withStyle(ChatFormatting.RED));
+            }
         }
         original.call(self,stack,components,flag);
     }

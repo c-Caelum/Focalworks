@@ -8,8 +8,8 @@
     "basic_hands.MixinOpRead",
     "MixinOpTheCoolerRead",
     "MixinOpTheCoolerWrite.MixinOpTheCoolerWrite",
-    "basic_hands.MixinOpWrite.MixinOpWrite",
-    "basic_hands.MixinOpWrite.MixinSpellActionDefaultImpls"
+    "basic_hands.MixinOpWrite",
+    "MixinSpellActionDefaultImpls"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,28 +1,29 @@
-package caelum.focalworks.casting.actions;
+package caelum.focalworks.casting.actions.ioticblocks;
 
 import at.petrak.hexcasting.api.casting.castables.ConstMediaAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
+import at.petrak.hexcasting.api.casting.iota.EntityIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
-import at.petrak.hexcasting.api.casting.mishaps.MishapBadItem;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.utils.NBTHelper;
-
-import static at.petrak.hexcasting.api.casting.OperatorUtils.*;
-import static caelum.focalworks.Focalworks.clamp;
-
-import at.petrak.hexcasting.common.items.storage.ItemSpellbook;
-import net.minecraft.network.chat.Component;
+import caelum.focalworks.casting.mishaps.MishapAlreadyRigged;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class OpFlipSpellbook implements ConstMediaAction {
+import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
+import static at.petrak.hexcasting.api.casting.OperatorUtils.getList;
+
+public class OpRigWriteIndex implements ConstMediaAction {
     private static final Integer argc = 2;
     @Override
     public int getArgc() {
@@ -36,14 +37,14 @@ public class OpFlipSpellbook implements ConstMediaAction {
     @Override
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> args, @NotNull CastingEnvironment env) throws Mishap {
         ItemEntity entity = getItemEntity(args,0,argc);
-        int page = getIntBetween(args,1,1,64,argc);
-
+        Iota hex = new ListIota(getList(args,1,argc));
         ItemStack stack = entity.getItem();
-        if (!(stack.getItem() instanceof ItemSpellbook)) {
-            throw new MishapBadItem(entity, Component.translatable("focalworks.spellbook_not_empty"));
+        if(NBTHelper.contains(stack,"riggedwriteindex")) {
+            throw new MishapAlreadyRigged(new EntityIota(entity),false);
+        } else {
+            CompoundTag tag = IotaType.serialize(hex);
+            NBTHelper.put(stack,"riggedwriteindex",tag);
         }
-        NBTHelper.putInt(stack,"page_idx",page);
-
         return List.of();
     }
 

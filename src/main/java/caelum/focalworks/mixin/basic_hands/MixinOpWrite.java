@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin.basic_hands.MixinOpWrite;
+package caelum.focalworks.mixin.basic_hands;
 
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
@@ -13,7 +13,6 @@ import caelum.focalworks.api.RiggedHexFinder;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -38,7 +37,7 @@ public class MixinOpWrite {
     private Iota focalworks_execute(Iota value, @Local(name = "handStack") ItemStack handStack, @Local(name="env")CastingEnvironment env) {
         HashMap<String,Object> map = Focalworks.CONTEXT.get();
         CastingVM vm = (CastingVM)map.get("vm");
-        RiggedHexFinder.cast_rigged_hex(vm,RiggedHexFinder.get_rig_write_item(handStack, env.getWorld()));
+        RiggedHexFinder.cast_rigged_hex(vm,RiggedHexFinder.get_rig_item(handStack, env.getWorld(),"riggedwrite"));
         CastingImage image = vm.getImage();
         List<Iota> stack = image.getStack();
         Iota top = stack.remove(stack.size()-1);

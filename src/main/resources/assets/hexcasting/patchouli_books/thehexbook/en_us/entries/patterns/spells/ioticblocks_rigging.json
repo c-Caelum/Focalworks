@@ -1,0 +1,23 @@
+{
+  "name": "focalworks.book.patterns.spells.ioticblocks",
+  "icon": "minecraft:feather",
+  "category": "hexcasting:patterns/spells",
+  "advancement": "hexcasting:root",
+  "flag": "mod:ioticblocks",
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "focalworks.book.patterns.spells.ioticblocks.explainer0_title",
+      "text": "focalworks.book.patterns.spells.ioticblocks.explainer0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:rig_write_index",
+      "anchor": "focalworks:rig_write_index",
+      "input": "item, hex",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.ioticblocks.rig_write_index"
+    }
+  ]
+}

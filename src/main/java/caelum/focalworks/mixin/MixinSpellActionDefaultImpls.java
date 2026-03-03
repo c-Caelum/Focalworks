@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin.basic_hands.MixinOpWrite;
+package caelum.focalworks.mixin;
 
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 public final class MixinSpellActionDefaultImpls {
     @Inject(method="operate",at= @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/castables/SpellAction;executeWithUserdata(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;Lnet/minecraft/nbt/CompoundTag;)Lat/petrak/hexcasting/api/casting/castables/SpellAction$Result;"))
     private static void operate0(SpellAction $this, CastingEnvironment env, CastingImage image, SpellContinuation continuation, CallbackInfoReturnable<OperationResult> cir) {
-        if ($this instanceof OpWrite) {
+        if (($this instanceof OpWrite) || ($this instanceof OpTheCoolerWrite)) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             map.put("vm",new CastingVM(image,env));
             Focalworks.CONTEXT.set(map);
@@ -34,7 +34,7 @@ public final class MixinSpellActionDefaultImpls {
     @Expression("? = ?.executeWithUserdata(?, ?, ?)")
     @Inject(method="operate",at= @At(value = "MIXINEXTRAS:EXPRESSION", shift = At.Shift.AFTER))
     private static void operate1(SpellAction $this, CastingEnvironment environment, CastingImage castingImage, SpellContinuation spellContinuation, CallbackInfoReturnable<OperationResult> cir, @Local LocalRef<CastingEnvironment> env, @Local LocalRef<CastingImage> image, @Local LocalRef<SpellContinuation> continuation) {
-        if ($this instanceof OpWrite) {
+        if (($this instanceof OpWrite) || ($this instanceof OpTheCoolerWrite)) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             CastingVM vm = (CastingVM) map.get("vm");
             env.set(vm.getEnv());

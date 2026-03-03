@@ -42,7 +42,7 @@ public class MixinOpTheCoolerWrite {
         HashMap<String,Object> map = Focalworks.CONTEXT.get();
         if(target instanceof ItemEntity) {
             CastingVM vm = (CastingVM) map.get("vm");
-            RiggedHexFinder.cast_rigged_hex(vm, RiggedHexFinder.get_rig_write_item(((ItemEntity) target).getItem(), env.getWorld()));
+            RiggedHexFinder.cast_rigged_hex(vm, RiggedHexFinder.get_rig_item(((ItemEntity) target).getItem(), env.getWorld(),"riggedwrite"));
             CastingImage image = vm.getImage();
             List<Iota> stack = image.getStack();
             Iota top = stack.remove(stack.size() - 1);

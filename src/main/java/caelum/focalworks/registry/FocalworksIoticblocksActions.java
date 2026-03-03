@@ -7,17 +7,13 @@ import at.petrak.hexcasting.api.casting.math.HexDir;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import net.minecraft.core.Registry;
 import at.petrak.hexcasting.common.lib.hex.HexActions;
-import caelum.focalworks.casting.actions.*;
+import caelum.focalworks.casting.actions.ioticblocks.*;
 import static caelum.focalworks.Focalworks.id;
 
 
-public class FocalworksActions {
+public class FocalworksIoticblocksActions {
     public static void init() {
-        register("rig_read","wwaqwqqqwqwqqwwqqeqqwwqq",HexDir.EAST,new OpRigRead());
-        register("rig_write","wwdeweeeweweewweeqeewwee",HexDir.EAST,new OpRigWrite());
-        register("crack_rig","wwaqwqqqwqedwewwewdawdwwwwdw",HexDir.EAST,new OpCrackRig());
-        register("flip_spellbook","wwdeweeewewdqeeqdqeewwee",HexDir.EAST,new OpFlipSpellbook());
-        register("read_spellbook_page","wwaqwqqqwqwqqwwqqeaeqqea",HexDir.EAST,new OpReadSpellbookPage());
+        register("rig_write_index","wwdeweeeweqawqwawwwdwwdw",HexDir.EAST,new OpRigWriteIndex());
     }
     private static ActionRegistryEntry register(
             String name,

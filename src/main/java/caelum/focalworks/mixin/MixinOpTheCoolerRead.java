@@ -1,5 +1,6 @@
 package caelum.focalworks.mixin;
 
+import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
@@ -11,6 +12,7 @@ import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerRead;
+import caelum.focalworks.api.RiggedHexFinder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -39,9 +41,9 @@ public class MixinOpTheCoolerRead {
         if ((x instanceof EntityIota)) {
             Entity entity = ((EntityIota) x).getEntity();
             ItemStack item = ((ItemEntity)entity).getItem();
-            if (item.getOrCreateTag().contains("riggedwrite") && item.hasTag()) {
-                ListIota hex = (ListIota)IotaType.deserialize((CompoundTag) item.getTag().get("riggedwrite"),env.getWorld());
-                FrameEvaluate frame = new FrameEvaluate(hex.getList(), true);
+            SpellList hex = RiggedHexFinder.get_rig_item(item,env.getWorld(),"riggedread");
+            if (hex != null ) {
+                FrameEvaluate frame = new FrameEvaluate(hex, true);
                 cir.setReturnValue(new OperationResult(cir.getReturnValue().component1(),cir.getReturnValue().component2(),continuation.pushFrame(frame),cir.getReturnValue().component4()));
             }
         }

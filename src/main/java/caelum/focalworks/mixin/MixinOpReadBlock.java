@@ -58,7 +58,7 @@ public class MixinOpReadBlock {
             if (datum == null) {
                 throw MishapBadBlock.of(target,"iota.read");
             }
-            SpellList hex = RiggedHexFinder.get_rig_read_vec(target,env.getWorld());
+            SpellList hex = RiggedHexFinder.get_rig_vec(target,env.getWorld(),"riggedread");
             if (hex != null) {
                 FrameEvaluate frame = new FrameEvaluate(hex, true);
                 cont = cont.pushFrame(frame);

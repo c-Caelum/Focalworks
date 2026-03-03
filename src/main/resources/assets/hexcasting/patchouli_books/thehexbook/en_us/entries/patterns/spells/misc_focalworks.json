@@ -17,6 +17,14 @@
       "input": "item, num",
       "output": "",
       "text": "focalworks.book.patterns.spells.misc_page.flip_spellbook"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:read_spellbook_page",
+      "anchor": "focalworks:read_spellbook_page",
+      "input": "item",
+      "output": "num",
+      "text": "focalworks.book.patterns.spells.misc_page.read_spellbook_page"
     }
   ]
 }

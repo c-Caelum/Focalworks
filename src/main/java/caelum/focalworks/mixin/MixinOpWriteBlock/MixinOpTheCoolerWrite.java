@@ -54,7 +54,7 @@ public class MixinOpTheCoolerWrite {
             ADIotaHolder datumHolder = new IoticBlocksAPIImpl().findIotaHolder(env.getWorld(), target);
             if (datumHolder == null) {throw MishapBadBlock.of(target,"iota.read");}
 
-            SpellList hex = RiggedHexFinder.get_rig_write_vec(target,env.getWorld());
+            SpellList hex = RiggedHexFinder.get_rig_vec(target,env.getWorld(),"riggedwrite");
             if (hex != null) {
                 RiggedHexFinder.cast_rigged_hex(vm,hex);
                 CastingImage image = vm.getImage();
