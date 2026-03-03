@@ -39,18 +39,16 @@ public class Focalworks implements ModInitializer {
     public static int clamp(int val, int min, int max) {
         return Math.min(max,Math.max(val, min));
     }
-    public static RenderedSpell emptyRenderedSpell() {
-        return new RenderedSpell() {
-            @Override
-            public void cast(@NotNull CastingEnvironment castingEnvironment) {
+    public static RenderedSpell emptyRenderedSpell = new RenderedSpell() {
+        @Override
+        public void cast(@NotNull CastingEnvironment castingEnvironment) {
 
-            }
+        }
 
-            @Override
-            public @Nullable CastingImage cast(@NotNull CastingEnvironment castingEnvironment, @NotNull CastingImage castingImage) {
-                return null;
-            }
-        };
-    }
+        @Override
+        public @Nullable CastingImage cast(@NotNull CastingEnvironment castingEnvironment, @NotNull CastingImage castingImage) {
+            return null;
+        }
+    };
 }
 

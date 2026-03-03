@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-@Mixin(OpTheCoolerWrite.class)
+@Mixin(value=OpTheCoolerWrite.class,priority=999)
 public class MixinOpTheCoolerWrite {
     @Shadow
     @Final
@@ -54,13 +54,6 @@ public class MixinOpTheCoolerWrite {
             ADIotaHolder datumHolder = new IoticBlocksAPIImpl().findIotaHolder(env.getWorld(), target);
             if (datumHolder == null) {throw MishapBadBlock.of(target,"iota.read");}
 
-            Iota datum = datumHolder.readIota(env.getWorld());
-            if (datum == null) {
-                datum = datumHolder.emptyIota();
-            }
-            if (datum == null) {
-                throw MishapBadBlock.of(target,"iota.read");
-            }
             SpellList hex = RiggedHexFinder.get_rig_write_vec(target,env.getWorld());
             if (hex != null) {
                 RiggedHexFinder.cast_rigged_hex(vm,hex);
@@ -71,9 +64,9 @@ public class MixinOpTheCoolerWrite {
                     stack2.remove(stack2.size()-1);
                     if (!((BooleanIota)top).getBool()) {
                         List<OperatorSideEffect> sideEffects = new ArrayList<OperatorSideEffect>();
-                        optional_result.set(new SpellAction.Result(Focalworks.emptyRenderedSpell(),
+                        optional_result.set(new SpellAction.Result(Focalworks.emptyRenderedSpell,
                                 0L,
-                                List.of(new ParticleSpray(target.getCenter(), new Vec3(0, 0, 0), 0, 0, 0)),
+                                List.of(),
                                 1L
                         ));
                     }

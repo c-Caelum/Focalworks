@@ -9,6 +9,7 @@ import at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.iota.ListIota;
+import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.casting.actions.rw.OpRead;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import net.minecraft.nbt.CompoundTag;
@@ -26,17 +27,16 @@ public class MixinOpRead{
             SpellContinuation continuation,
             CallbackInfoReturnable<OperationResult> cir
     ) {
-
         CastingEnvironment.HeldItemInfo info = env.getHeldItemToOperateOn(stack ->  {
             ADIotaHolder dataHolder = IXplatAbstractions.INSTANCE.findDataHolder(stack);
             return dataHolder != null && (dataHolder.readIota(env.getWorld()) != null || dataHolder.emptyIota() != null)
                     && stack.hasTag() && stack.getOrCreateTag().contains("riggedread");});
         if (info != null) {
-            ADIotaHolder datumHolder = IXplatAbstractions.INSTANCE.findDataHolder(info.stack());
-            ListIota hex =  (ListIota)IotaType.deserialize((CompoundTag) info.stack().getTag().get("riggedread"),env.getWorld());
-            FrameEvaluate frame = new FrameEvaluate(hex.getList(), true);
-            cir.setReturnValue(new OperationResult(cir.getReturnValue().component1(),cir.getReturnValue().component2(),continuation.pushFrame(frame),cir.getReturnValue().component4()));
+            if (NBTHelper.contains(info.stack(),"riggedread")) {
+                ListIota hex = (ListIota) IotaType.deserialize((CompoundTag) info.stack().getTag().get("riggedread"), env.getWorld());
+                FrameEvaluate frame = new FrameEvaluate(hex.getList(), true);
+                cir.setReturnValue(new OperationResult(cir.getReturnValue().component1(), cir.getReturnValue().component2(), continuation.pushFrame(frame), cir.getReturnValue().component4()));
+            }
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin.MixinOpWriteBlock;
+package caelum.focalworks.mixin.MixinOpTheCoolerWrite;
 
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerWrite;
+import at.petrak.hexcasting.common.casting.actions.rw.OpWrite;
 import caelum.focalworks.Focalworks;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;

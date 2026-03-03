@@ -1,12 +1,13 @@
 {
   "required": true,
   "package": "caelum.focalworks.mixin",
+  "mixinextras": {"minVersion": "0.5.0"},
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinIotaHolderItem",
     "basic_hands.MixinOpRead",
     "MixinOpTheCoolerRead",
-    "MixinOpTheCoolerWrite",
+    "MixinOpTheCoolerWrite.MixinOpTheCoolerWrite",
     "basic_hands.MixinOpWrite.MixinOpWrite",
     "basic_hands.MixinOpWrite.MixinSpellActionDefaultImpls"
   ],

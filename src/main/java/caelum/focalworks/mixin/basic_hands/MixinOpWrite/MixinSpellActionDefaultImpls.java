@@ -24,9 +24,10 @@ import java.util.HashMap;
 public final class MixinSpellActionDefaultImpls {
     @Inject(method="operate",at= @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/castables/SpellAction;executeWithUserdata(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;Lnet/minecraft/nbt/CompoundTag;)Lat/petrak/hexcasting/api/casting/castables/SpellAction$Result;"))
     private static void operate0(SpellAction $this, CastingEnvironment env, CastingImage image, SpellContinuation continuation, CallbackInfoReturnable<OperationResult> cir) {
-        if ($this instanceof OpTheCoolerWrite) {
+        if ($this instanceof OpWrite) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             map.put("vm",new CastingVM(image,env));
+            Focalworks.CONTEXT.set(map);
         }
     }
     @Definition(id = "executeWithUserdata", method = "Lat/petrak/hexcasting/api/casting/castables/SpellAction;executeWithUserdata(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;Lnet/minecraft/nbt/CompoundTag;)Lat/petrak/hexcasting/api/casting/castables/SpellAction$Result;")

@@ -21,6 +21,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
@@ -29,6 +30,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class RiggedHexFinder {
     public static SpellList get_rig_read_vec(BlockPos pos, ServerLevel world) {
@@ -78,12 +80,13 @@ public class RiggedHexFinder {
         return null;
     }
     public static void cast_rigged_hex(CastingVM vm, SpellList hex) {
-        List<Iota> temp = new ArrayList<Iota>();
-        hex.forEach(temp::add);
-        ExecutionClientView result = vm.queueExecuteAndWrapIotas(temp,vm.getEnv().getWorld());
-        if (result.getResolutionType() == ResolvedPatternType.ERRORED) {
-            throw new MishapInternalHex();
+        if(hex != null) {
+            List<Iota> temp = new ArrayList<Iota>();
+            hex.forEach(temp::add);
+            ExecutionClientView result = vm.queueExecuteAndWrapIotas(temp, vm.getEnv().getWorld());
+            if (result.getResolutionType() == ResolvedPatternType.ERRORED) {
+                throw new MishapInternalHex();
+            }
         }
     }
-
 }

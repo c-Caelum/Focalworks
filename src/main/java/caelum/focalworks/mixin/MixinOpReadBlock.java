@@ -17,10 +17,6 @@ import gay.object.ioticblocks.api.IoticBlocksAPI;
 import gay.object.ioticblocks.impl.IoticBlocksAPIImpl;
 import gay.object.ioticblocks.utils.IoticBlocksUtils;
 
-
-import jdk.dynalink.Operation;
-import kotlin.Pair;
-import net.minecraft.core.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
