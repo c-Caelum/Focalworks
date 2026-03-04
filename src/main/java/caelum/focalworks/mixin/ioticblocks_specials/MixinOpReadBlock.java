@@ -1,19 +1,16 @@
-package caelum.focalworks.mixin;
+package caelum.focalworks.mixin.ioticblocks_specials;
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
 import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
-import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
 import at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerRead;
-import caelum.focalworks.Focalworks;
 import caelum.focalworks.api.RiggedHexFinder;
-import gay.object.ioticblocks.api.IoticBlocksAPI;
 import gay.object.ioticblocks.impl.IoticBlocksAPIImpl;
 import gay.object.ioticblocks.utils.IoticBlocksUtils;
 

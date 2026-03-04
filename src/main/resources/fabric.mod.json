@@ -28,7 +28,8 @@
 			"config": "focalworks.client.mixins.json",
 			"environment": "client"
 		},
-       "focalworksIoticBlocks.mixins.json"
+       "focalworksIoticBlocks.mixins.json",
+       "focalworksHexdebug.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.4",
@@ -38,6 +39,7 @@
 	},
     "suggests": {
       "ioticblocks": ">=1.0.2",
-      "lapisworks": ">=1.5.7"
+      "lapisworks": ">=1.5.7",
+      "hexdebug": ">=0.8.0"
     }
 }

@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin;
+package caelum.focalworks.mixin.hexcasting;
 
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;

@@ -115,6 +115,10 @@ dependencies {
 
     modCompileOnly "gay.object.ioticblocks:ioticblocks-fabric:1.0.2+1.20.1"
     modLocalRuntime "gay.object.ioticblocks:ioticblocks-fabric:1.0.2+1.20.1"
+    /*modCompileOnly "gay.object.hexdebug:hexdebug-fabric:0.8.0+1.20.1"
+    modLocalRuntime "gay.object.hexdebug:hexdebug-fabric:0.8.0+1.20.1"
+    /*modCompileOnly "gay.object.hexdebug.hexdebug-fabric:${project.hexdebug_version}+${project.minecraft_version}"
+    modLocalRuntime "gay.object.hexdebug.hexdebug-fabric:${project.hexdebug_version}+${project.minecraft_version}"*/
     /*modCompileOnly "maven.modrinth:lapisworks:1.5.7"
     modLocalRuntime "maven.modrinth:lapisworks:1.5.7"
     modImplementation("dev.emi:trinkets:${trinkets_version}")

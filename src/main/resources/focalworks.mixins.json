@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinIotaHolderItem",
-    "basic_hands.MixinOpRead",
-    "MixinOpTheCoolerRead",
+    "hexcasting.MixinOpRead",
+    "hexcasting.MixinOpTheCoolerRead",
     "MixinOpTheCoolerWrite.MixinOpTheCoolerWrite",
-    "basic_hands.MixinOpWrite",
-    "MixinSpellActionDefaultImpls"
+    "hexcasting.MixinOpWrite",
+    "hexcasting.MixinSpellActionDefaultImpls"
   ],
   "injectors": {
     "defaultRequire": 1

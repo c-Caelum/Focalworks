@@ -75,7 +75,7 @@ public class RiggedHexFinder {
         }
     }
     public static Iota cast_rigged_read(CastingVM vm, SpellList hex) {
-        RiggedHexFinder.cast_rigged_hex(vm,hex);
+        cast_rigged_hex(vm,hex);
         CastingImage image = vm.getImage();
         List<Iota> stack = image.getStack();
         Iota top = stack.remove(stack.size() - 1);

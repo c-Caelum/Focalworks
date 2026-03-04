@@ -43,7 +43,9 @@ public class MixinOpWriteIndex {
 
     @Definition(id = "get", method = "Ljava/util/List;get(I)Ljava/lang/Object;")
     @Definition(id = "Iota", type = Iota.class)
-    @Expression(value = "(Iota) ?.get(2)")
+    @Definition(id = "args", local = @Local(type = List.class, argsOnly = true))
+
+    @Expression(value = "(Iota) args.get(2)")
     //target = "Ljava/util/List;get(I)Ljava/lang/Object;"
     @ModifyExpressionValue(method = "execute", at = @At(value = "MIXINEXTRAS:EXPRESSION", ordinal = 0), remap = false)
     private Iota focalworks_execute(Iota iota, @Local(name="target") Either<Entity, BlockPos> target,@Local(name="env") CastingEnvironment env) {

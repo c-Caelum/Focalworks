@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin;
+package caelum.focalworks.mixin.hexcasting;
 
 import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
@@ -8,12 +8,8 @@ import at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
 import at.petrak.hexcasting.api.casting.iota.EntityIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
-import at.petrak.hexcasting.api.casting.iota.IotaType;
-import at.petrak.hexcasting.api.casting.iota.ListIota;
-import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerRead;
 import caelum.focalworks.api.RiggedHexFinder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;

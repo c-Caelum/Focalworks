@@ -22,7 +22,8 @@
           ioticblocks: {
             "": "Ioticblocks Focalworking",
             explainer0: "Recently, I've been dissatisfied with the way my hexes take up much of the stack space just to read one iota from a list. $(l:patterns/readwrite_blocks)Reading/Writing Blocks$(/l) fixes this, but it seems my standard rigged writes still operate on the whole list, making them obsolete. To fix this, I have come up with some specialised patterns to override them.",
-            rig_write_index: "Rigs the write from $(l:patterns/readwrite_blocks#ioticblocks:write/index)Tachygrapher's Gambit$(/l) with the given hex."
+            rig_write_index: "Rigs the write from $(l:patterns/readwrite_blocks#ioticblocks:write/index)Tachygrapher's Gambit$(/l) with the given hex.",
+            rig_read_index: "Rigs the read from $(l:patterns/readwrite_blocks#ioticblocks:read/index)Tachygrapher's Distillation$(/l) with the given hex."
           }
         }
       }

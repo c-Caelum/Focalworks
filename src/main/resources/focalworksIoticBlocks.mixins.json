@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinOpWriteBlock.MixinOpTheCoolerWrite",
-    "MixinOpReadBlock",
+    "ioticblocks_specials.MixinOpReadBlock",
     "ioticblocks_specials.OpWriteIndex.MixinSpellActionDefaultImpls",
     "ioticblocks_specials.OpWriteIndex.MixinOpWriteIndex",
     "ioticblocks_specials.OpReadIndex.MixinConstMediaActionDefaultImpls",
-    "ioticblocks_specials.OpWriteIndex.MixinOpReadIndex"
+    "ioticblocks_specials.OpReadIndex.MixinOpReadIndex"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -14,6 +14,7 @@ import static caelum.focalworks.Focalworks.id;
 public class FocalworksIoticblocksActions {
     public static void init() {
         register("rig_write_index","wwdeweeeweqawqwawwwdwwdw",HexDir.EAST,new OpRigWriteIndex());
+        register("rig_read_index", "wwaqwqqqwqedwewwewewdwww", HexDir.EAST, new OpRigReadIndex());
     }
     private static ActionRegistryEntry register(
             String name,

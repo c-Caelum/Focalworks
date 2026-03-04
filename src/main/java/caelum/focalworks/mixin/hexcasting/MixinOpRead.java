@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin.basic_hands;
+package caelum.focalworks.mixin.hexcasting;
 
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
@@ -8,14 +8,9 @@ import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
-import at.petrak.hexcasting.api.casting.iota.IotaType;
-import at.petrak.hexcasting.api.casting.iota.ListIota;
-import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.casting.actions.rw.OpRead;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import caelum.focalworks.api.RiggedHexFinder;
-import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

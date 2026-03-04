@@ -18,6 +18,14 @@
       "input": "item, hex",
       "output": "",
       "text": "focalworks.book.patterns.spells.ioticblocks.rig_write_index"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "focalworks:rig_read_index",
+      "anchor": "focalworks:rig_read_index",
+      "input": "item, hex",
+      "output": "",
+      "text": "focalworks.book.patterns.spells.ioticblocks.rig_read_index"
     }
   ]
 }

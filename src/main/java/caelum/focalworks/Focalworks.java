@@ -39,7 +39,7 @@ public class Focalworks implements ModInitializer {
         if (FabricLoader.getInstance().isModLoaded("ioticblocks")) {
             FocalworksIoticblocksActions.init();
         }
-		LOGGER.info("Focalworks' actions registering!");
+		LOGGER.info("I slipped and hit the init button!!!!");
 	}
     public static int clamp(int val, int min, int max) {
         return Math.min(max,Math.max(val, min));
