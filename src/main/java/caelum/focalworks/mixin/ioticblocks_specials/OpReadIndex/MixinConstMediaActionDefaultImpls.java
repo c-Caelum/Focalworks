@@ -29,9 +29,7 @@ public final class MixinConstMediaActionDefaultImpls {
     private static void operate0(ConstMediaAction $this, CastingEnvironment env, CastingImage image, SpellContinuation continuation, CallbackInfoReturnable<OperationResult> cir) {
         if ($this instanceof OpReadIndex) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
-            map.put("vm",new CastingVM(image,env));
             map.put("cont",continuation);
-            Focalworks.CONTEXT.set(map);
         }
     }
 
@@ -40,11 +38,7 @@ public final class MixinConstMediaActionDefaultImpls {
     @Inject(method = "operate", at = @At(value = "MIXINEXTRAS:EXPRESSION", shift = At.Shift.AFTER))
     private static void operate1(ConstMediaAction $this, CastingEnvironment environment, CastingImage castingImage, SpellContinuation spellContinuation, CallbackInfoReturnable<OperationResult> cir, @Local LocalRef<CastingEnvironment> env, @Local LocalRef<CastingImage> image, @Local LocalRef<SpellContinuation> continuation) {
         if ($this instanceof OpReadIndex) {
-            HashMap<String,Object> map = Focalworks.CONTEXT.get();
-            CastingVM vm = (CastingVM) map.get("vm");
-            env.set(vm.getEnv());
-            CastingImage img = vm.getImage();
-            image.set(img.copy(img.getStack(), img.getParenCount(), img.getParenthesized(),img.getEscapeNext(),img.getOpsConsumed() + 2, img.getUserData()));
+            HashMap<String, Object> map = Focalworks.CONTEXT.get();
             continuation.set((SpellContinuation) map.get("cont"));
         }
     }

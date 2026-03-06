@@ -15,6 +15,7 @@ import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,6 +31,13 @@ public final class MixinSpellActionDefaultImpls {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             if(image.getOpsConsumed()+1 >= HexConfig.server().maxOpCount()) {
                 throw new MishapEvalTooMuch();
+            }
+
+            if (map.containsKey("vm")) {
+                CastingVM vm = (CastingVM) map.get("vm");
+                vm.setImage(image.withUsedOp());
+                map.put("vm",vm);
+                Focalworks.CONTEXT.set(map);
             }
             map.put("vm",new CastingVM(image.copy(
                     image.getStack(),
@@ -51,7 +59,10 @@ public final class MixinSpellActionDefaultImpls {
             CastingVM vm = (CastingVM) map.get("vm");
             env.set(vm.getEnv());
             CastingImage img = vm.getImage();
-            image.set(img.copy(img.getStack(), img.getParenCount(), img.getParenthesized(),img.getEscapeNext(),img.getOpsConsumed(), img.getUserData()));
+            CompoundTag userdata = img.getUserData();
+            if (userdata.contains("isInRiggedHex")) userdata.remove("isInRiggedHex");
+
+            image.set(img.copy(img.getStack(), img.getParenCount(), img.getParenthesized(),img.getEscapeNext(),img.getOpsConsumed(), userdata));
         }
     }
 }

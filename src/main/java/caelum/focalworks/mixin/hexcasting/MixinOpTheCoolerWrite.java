@@ -13,6 +13,7 @@ import caelum.focalworks.api.RiggedHexFinder;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.phys.Vec3;
@@ -42,29 +43,36 @@ public class MixinOpTheCoolerWrite {
         HashMap<String,Object> map = Focalworks.CONTEXT.get();
         if(target instanceof ItemEntity) {
             CastingVM vm = (CastingVM) map.get("vm");
-            RiggedHexFinder.cast_rigged_hex(vm, RiggedHexFinder.get_rig_item(((ItemEntity) target).getItem(), env.getWorld(),"riggedwrite"));
             CastingImage image = vm.getImage();
-            List<Iota> stack = image.getStack();
-            Iota top = stack.remove(stack.size() - 1);
+            if(!image.getUserData().contains("isInRiggedHex")) {
+                CompoundTag userdata = image.getUserData();
+                userdata.putBoolean("isInRiggedhex",true);
+                RiggedHexFinder.cast_rigged_hex(vm, RiggedHexFinder.get_rig_item(((ItemEntity) target).getItem(), env.getWorld(), "riggedwrite"));
+                image = vm.getImage();
+                List<Iota> stack = image.getStack();
+                Iota top = stack.remove(stack.size() - 1);
 
-            vm.setImage(image.copy(
-                    stack,
-                    image.getParenCount(),
-                    image.getParenthesized(),
-                    image.getEscapeNext(),
-                    image.getOpsConsumed()+1L,
-                    image.getUserData()
-            ));
-            map.put("vm", vm);
-            Focalworks.CONTEXT.set(map);
-            if (top instanceof BooleanIota) {
-                isNotCancelled = ((BooleanIota) top).getBool();
-                if (isNotCancelled) {
-                    return stack.remove(stack.size() - 1);
-                } else {/* I don't really need this, but it's just to make sure no errors pop up */ return new NullIota();}
-            } else {
-                return top;
-            }
+                vm.setImage(image.copy(
+                        stack,
+                        image.getParenCount(),
+                        image.getParenthesized(),
+                        image.getEscapeNext(),
+                        image.getOpsConsumed() + 1L,
+                        image.getUserData()
+                ));
+                map.put("vm", vm);
+                Focalworks.CONTEXT.set(map);
+                if (top instanceof BooleanIota) {
+                    isNotCancelled = ((BooleanIota) top).getBool();
+                    if (isNotCancelled) {
+                        return stack.remove(stack.size() - 1);
+                    } else {/* I don't really need this, but it's just to make sure no errors pop up */
+                        return new NullIota();
+                    }
+                } else {
+                    return top;
+                }
+            } else {return datum;}
         }
         return datum;
     }

@@ -37,10 +37,6 @@ public class MixinOpWriteIndex {
     @Expression("iota = ?.get(2)")*/
     @Unique
     private boolean isNotCancelled = true;
-    @Unique
-    private SpellList hex = null;
-    @Unique
-    private boolean is_specialised = false;
 
     @Definition(id = "get", method = "Ljava/util/List;get(I)Ljava/lang/Object;")
     @Definition(id = "Iota", type = Iota.class)
@@ -50,23 +46,17 @@ public class MixinOpWriteIndex {
     //target = "Ljava/util/List;get(I)Ljava/lang/Object;"
     @ModifyExpressionValue(method = "execute", at = @At(value = "MIXINEXTRAS:EXPRESSION", ordinal = 0), remap = false)
     private Iota focalworks_execute(Iota iota, @Local(name="target") Either<Entity, BlockPos> target,@Local(name="env") CastingEnvironment env) {
-
+        SpellList hex = null;
         if (target.left().isPresent()) {
             Entity entity = target.left().get();
             if (entity instanceof ItemEntity) {
                 hex = RiggedHexFinder.get_rig_item(((ItemEntity) entity).getItem(),env.getWorld(),"riggedwriteindex");
-                if (hex == null) {
-                    hex = RiggedHexFinder.get_rig_item(((ItemEntity) entity).getItem(),env.getWorld(),"riggedwrite");
-                } else {is_specialised = true;}
             }
         } else {
             BlockPos pos = target.right().get();
             hex = RiggedHexFinder.get_rig_vec(pos,env.getWorld(),"riggedwriteindex");
-            if (hex == null) {
-                hex = RiggedHexFinder.get_rig_vec(pos,env.getWorld(),"riggedwrite");
-            } else {is_specialised = true;}
         }
-        if (hex != null && is_specialised) {
+        if (hex != null) {
             HashMap<String, Object> map = Focalworks.CONTEXT.get();
             CastingVM vm = (CastingVM) map.get("vm");
             Pair<Iota, Boolean> result = RiggedHexFinder.cast_rigged_write_with_cancel(vm,hex);
@@ -77,24 +67,6 @@ public class MixinOpWriteIndex {
         return iota;
     }
 
-    @ModifyArg(method="execute",at=@At(value="INVOKE",target="gay/object/ioticblocks/casting/actions/OpWriteIndex$Spell.<init> (Lat/petrak/hexcasting/api/casting/iota/Iota;Lat/petrak/hexcasting/api/addldata/ADIotaHolder;)V"),index=0,remap = false)
-    private Iota focalworks_new_list(Iota datum) {
-        if (!is_specialised && hex != null) {
-            HashMap<String, Object> map = Focalworks.CONTEXT.get();
-            CastingVM vm = (CastingVM) map.get("vm");
-            List<Iota> stack = vm.getImage().getStack();
-            stack.remove(stack.size()-1);
-            stack.add(datum);
-            vm.setImage(RiggedHexFinder.set_image_stack(vm.getImage(),stack));
-            Pair<Iota, Boolean> result = RiggedHexFinder.cast_rigged_write_with_cancel(vm,hex);
-            vm.setImage(vm.getImage().withUsedOp());
-            isNotCancelled = result.getSecond();
-            map.put("vm", vm);
-            Focalworks.CONTEXT.set(map);
-            return result.getFirst();
-        }
-        return datum;
-    }
     @Inject(method="execute",at=@At(value="TAIL"),cancellable = true,remap = false)
     @Unique
     private void focalworks_canceller(List<Iota> args, CastingEnvironment env, CallbackInfoReturnable<SpellAction.Result> cir) {

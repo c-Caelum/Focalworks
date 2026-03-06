@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
 import at.petrak.hexcasting.api.casting.iota.BooleanIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.NullIota;
+import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.casting.actions.rw.OpWrite;
 import caelum.focalworks.Focalworks;
 import caelum.focalworks.api.RiggedHexFinder;
@@ -37,29 +38,29 @@ public class MixinOpWrite {
     private Iota focalworks_execute(Iota value, @Local(name = "handStack") ItemStack handStack, @Local(name="env")CastingEnvironment env) {
         HashMap<String,Object> map = Focalworks.CONTEXT.get();
         CastingVM vm = (CastingVM)map.get("vm");
-        RiggedHexFinder.cast_rigged_hex(vm,RiggedHexFinder.get_rig_item(handStack, env.getWorld(),"riggedwrite"));
         CastingImage image = vm.getImage();
-        List<Iota> stack = image.getStack();
-        Iota top = stack.remove(stack.size()-1);
+        if(!(image.getUserData().contains("isInRiggedHex"))) {
+            NBTHelper.putBoolean(image.getUserData(), "isInRiggedHex", true);
+            vm.setImage(image);
+            RiggedHexFinder.cast_rigged_hex(vm, RiggedHexFinder.get_rig_item(handStack, env.getWorld(), "riggedwrite"));
+            image = vm.getImage();
+            List<Iota> stack = image.getStack();
+            Iota top = stack.remove(stack.size() - 1);
 
-        vm.setImage(image.copy(
-                stack,
-                image.getParenCount(),
-                image.getParenthesized(),
-                image.getEscapeNext(),
-                image.getOpsConsumed()+2,
-                image.getUserData()
-        ));
-
-        map.put("vm", vm);
-        Focalworks.CONTEXT.set(map);
-        if (top instanceof BooleanIota) {
-            isCancelled = ((BooleanIota) top).getBool();
-            if (isCancelled) {
-                return stack.remove(stack.size()-1);
-            } else {/* I don't really need this, but it's just to make sure no errors pop up */ return new NullIota();}
+            map.put("vm", vm);
+            Focalworks.CONTEXT.set(map);
+            if (top instanceof BooleanIota) {
+                isCancelled = ((BooleanIota) top).getBool();
+                if (isCancelled) {
+                    return stack.remove(stack.size() - 1);
+                } else {/* I don't really need this, but it's just to make sure no errors pop up */
+                    return new NullIota();
+                }
+            } else {
+                return top;
+            }
         } else {
-            return top;
+            return value;
         }
     }
     @Inject(method="execute",at=@At(value="TAIL"),cancellable = true)
