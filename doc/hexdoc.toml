@@ -1,0 +1,40 @@
+modid = "focalworks"
+book = "hexcasting:thehexbook"
+
+resource_dirs = [  # top takes priority
+    "resources",
+    "{$_project.src}/main/resources",
+    { path="{$_project.src}/generated/resources", required=false },
+    { modid="hexcasting" },
+    { modid="minecraft" },
+    { modid="hexdoc" },
+]
+export_dir = "src/hexdoc_focalworks/_export/generated"
+
+[template]
+# TODO: change this to point to your actual mod icon
+icon = "icon.png"
+include = [
+    "focalworks",
+    "hexcasting",
+    "hexdoc",
+]
+
+[template.args]
+mod_name = "Focalworks"
+author = "Caelum"
+show_landing_text = false
+
+[extra.hexcasting]
+# regexes for parsing pattern registry files - if some or all of your patterns aren't being detected by hexdoc, this may need to be updated
+# NOTE: "!Raw" means "don't apply variable interpolation to this value"
+_pattern_regex = { "!Raw"='(?P<is_per_world>(registerOnlyForHexdoc|register)|(registerPerWorldOnlyForHexdoc|registerPerWorld))\("(?P<name>[^"]+)"?,\s"(?P<signature>[qweasd]+)",\sHexDir\.(?P<startdir>\w+)' }
+
+[[extra.hexcasting.pattern_stubs]]
+path = "{$_project.src}/main/java/caelum/focalworks/registry/FocalworksActions.java"
+regex = "{^_pattern_regex}"
+
+# source paths
+
+[_project]
+src = "../src"
