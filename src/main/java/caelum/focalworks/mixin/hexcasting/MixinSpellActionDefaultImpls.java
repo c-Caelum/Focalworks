@@ -6,6 +6,8 @@ import at.petrak.hexcasting.api.casting.eval.OperationResult;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
+import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch;
+import at.petrak.hexcasting.api.mod.HexConfig;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerWrite;
 import at.petrak.hexcasting.common.casting.actions.rw.OpWrite;
 import caelum.focalworks.Focalworks;
@@ -26,6 +28,9 @@ public final class MixinSpellActionDefaultImpls {
     private static void operate0(SpellAction $this, CastingEnvironment env, CastingImage image, SpellContinuation continuation, CallbackInfoReturnable<OperationResult> cir) {
         if (($this instanceof OpWrite) || ($this instanceof OpTheCoolerWrite)) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
+            if(image.getOpsConsumed()+1 >= HexConfig.server().maxOpCount()) {
+                throw new MishapEvalTooMuch();
+            }
             map.put("vm",new CastingVM(image.copy(
                     image.getStack(),
                     image.getParenCount(),

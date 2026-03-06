@@ -4,7 +4,7 @@
   "package": "caelum.focalworks.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "MixinOpWriteBlock.MixinOpTheCoolerWrite",
+    "ioticblocks_specials.MixinOpTheCoolerWrite",
     "ioticblocks_specials.MixinOpReadBlock",
     "ioticblocks_specials.OpWriteIndex.MixinSpellActionDefaultImpls",
     "ioticblocks_specials.OpWriteIndex.MixinOpWriteIndex",

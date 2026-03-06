@@ -7,7 +7,7 @@
     "MixinIotaHolderItem",
     "hexcasting.MixinOpRead",
     "hexcasting.MixinOpTheCoolerRead",
-    "MixinOpTheCoolerWrite.MixinOpTheCoolerWrite",
+    "hexcasting.MixinOpTheCoolerWrite",
     "hexcasting.MixinOpWrite",
     "hexcasting.MixinSpellActionDefaultImpls"
   ],
