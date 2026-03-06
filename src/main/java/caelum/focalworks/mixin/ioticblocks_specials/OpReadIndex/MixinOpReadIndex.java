@@ -104,6 +104,8 @@ public class MixinOpReadIndex {
             stack.add(new ListIota(temp));
             vm.setImage(RiggedHexFinder.set_image_stack(vm.getImage(),stack));
             Iota result = RiggedHexFinder.cast_rigged_read(vm,hex);
+            map.put("vm", vm);
+            Focalworks.CONTEXT.set(map);
             return HexUtils.downcast(result.serialize(),ListTag.TYPE);
         }
         return listTag;

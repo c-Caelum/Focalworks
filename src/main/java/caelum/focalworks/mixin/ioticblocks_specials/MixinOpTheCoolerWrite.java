@@ -1,12 +1,9 @@
-package caelum.focalworks.mixin.MixinOpWriteBlock;
+package caelum.focalworks.mixin.ioticblocks_specials;
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
-import at.petrak.hexcasting.api.casting.ParticleSpray;
 import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
-import at.petrak.hexcasting.api.casting.eval.ExecutionClientView;
-import at.petrak.hexcasting.api.casting.eval.ResolvedPatternType;
 import at.petrak.hexcasting.api.casting.eval.sideeffects.OperatorSideEffect;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
@@ -17,12 +14,10 @@ import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock;
 import at.petrak.hexcasting.common.casting.actions.rw.OpTheCoolerWrite;
 import caelum.focalworks.Focalworks;
 import caelum.focalworks.api.RiggedHexFinder;
-import caelum.focalworks.casting.mishaps.MishapInternalHex;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import gay.object.ioticblocks.impl.IoticBlocksAPIImpl;
 import gay.object.ioticblocks.utils.IoticBlocksUtils;
-import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -71,7 +66,9 @@ public class MixinOpTheCoolerWrite {
                         ));
                     }
                 }
-                vm.setImage(image.copy(stack2,image.getParenCount(),image.getParenthesized(),image.getEscapeNext(),image.getOpsConsumed(),image.getUserData()));
+                vm.setImage(image.copy(stack2,image.getParenCount(),image.getParenthesized(),image.getEscapeNext(),image.getOpsConsumed()+1L,image.getUserData()));
+                map.put("vm", vm);
+                Focalworks.CONTEXT.set(map);
                 args2.set(List.of(new Vec3Iota(target.getCenter()),top));
             }
         });

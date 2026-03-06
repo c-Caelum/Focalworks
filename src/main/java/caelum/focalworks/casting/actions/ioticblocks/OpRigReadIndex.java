@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import static at.petrak.hexcasting.api.casting.OperatorUtils.getItemEntity;
 import static at.petrak.hexcasting.api.casting.OperatorUtils.getList;
@@ -38,6 +39,7 @@ public class OpRigReadIndex implements ConstMediaAction {
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> args, @NotNull CastingEnvironment env) throws Mishap {
         ItemEntity entity = getItemEntity(args,0,argc);
         Iota hex = new ListIota(getList(args,1,argc));
+        UUID test = UUID.randomUUID();
         ItemStack stack = entity.getItem();
         if(NBTHelper.contains(stack,"riggedreadindex")) {
             throw new MishapAlreadyRigged(new EntityIota(entity),false);

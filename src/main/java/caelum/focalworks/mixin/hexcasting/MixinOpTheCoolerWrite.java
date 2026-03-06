@@ -1,4 +1,4 @@
-package caelum.focalworks.mixin.MixinOpTheCoolerWrite;
+package caelum.focalworks.mixin.hexcasting;
 
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
@@ -52,9 +52,11 @@ public class MixinOpTheCoolerWrite {
                     image.getParenCount(),
                     image.getParenthesized(),
                     image.getEscapeNext(),
-                    image.getOpsConsumed(),
+                    image.getOpsConsumed()+1L,
                     image.getUserData()
             ));
+            map.put("vm", vm);
+            Focalworks.CONTEXT.set(map);
             if (top instanceof BooleanIota) {
                 isNotCancelled = ((BooleanIota) top).getBool();
                 if (isNotCancelled) {

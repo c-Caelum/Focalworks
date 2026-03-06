@@ -43,7 +43,8 @@ public final class MixinConstMediaActionDefaultImpls {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             CastingVM vm = (CastingVM) map.get("vm");
             env.set(vm.getEnv());
-            image.set(vm.getImage());
+            CastingImage img = vm.getImage();
+            image.set(img.copy(img.getStack(), img.getParenCount(), img.getParenthesized(),img.getEscapeNext(),img.getOpsConsumed() + 2, img.getUserData()));
             continuation.set((SpellContinuation) map.get("cont"));
         }
     }
