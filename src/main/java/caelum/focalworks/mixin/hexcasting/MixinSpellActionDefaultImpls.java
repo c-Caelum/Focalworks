@@ -26,7 +26,14 @@ public final class MixinSpellActionDefaultImpls {
     private static void operate0(SpellAction $this, CastingEnvironment env, CastingImage image, SpellContinuation continuation, CallbackInfoReturnable<OperationResult> cir) {
         if (($this instanceof OpWrite) || ($this instanceof OpTheCoolerWrite)) {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
-            map.put("vm",new CastingVM(image,env));
+            map.put("vm",new CastingVM(image.copy(
+                    image.getStack(),
+                    image.getParenCount(),
+                    image.getParenthesized(),
+                    image.getEscapeNext(),
+                    image.getOpsConsumed()+1,
+                    image.getUserData()
+            ),env));
             Focalworks.CONTEXT.set(map);
         }
     }
@@ -38,7 +45,8 @@ public final class MixinSpellActionDefaultImpls {
             HashMap<String,Object> map = Focalworks.CONTEXT.get();
             CastingVM vm = (CastingVM) map.get("vm");
             env.set(vm.getEnv());
-            image.set(vm.getImage());
+            CastingImage img = vm.getImage();
+            image.set(img.copy(img.getStack(), img.getParenCount(), img.getParenthesized(),img.getEscapeNext(),img.getOpsConsumed(), img.getUserData()));
         }
     }
 }

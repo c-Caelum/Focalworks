@@ -47,9 +47,12 @@ public class MixinOpWrite {
                 image.getParenCount(),
                 image.getParenthesized(),
                 image.getEscapeNext(),
-                image.getOpsConsumed(),
+                image.getOpsConsumed()+2,
                 image.getUserData()
         ));
+
+        map.put("vm", vm);
+        Focalworks.CONTEXT.set(map);
         if (top instanceof BooleanIota) {
             isCancelled = ((BooleanIota) top).getBool();
             if (isCancelled) {
@@ -66,7 +69,7 @@ public class MixinOpWrite {
                     Focalworks.emptyRenderedSpell,
                     0L,
                     List.of(),
-                    1L
+                    2L
             ));
         }
     }

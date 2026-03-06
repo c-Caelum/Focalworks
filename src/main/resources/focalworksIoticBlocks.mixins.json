@@ -1,5 +1,5 @@
 {
-  "required": true,
+  "required": false,
   "mixinextras": {"minVersion": "0.5.0"},
   "package": "caelum.focalworks.mixin",
   "compatibilityLevel": "JAVA_17",

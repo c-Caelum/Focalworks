@@ -71,7 +71,9 @@ public class MixinOpTheCoolerWrite {
                         ));
                     }
                 }
-                vm.setImage(image.copy(stack2,image.getParenCount(),image.getParenthesized(),image.getEscapeNext(),image.getOpsConsumed(),image.getUserData()));
+                vm.setImage(image.copy(stack2,image.getParenCount(),image.getParenthesized(),image.getEscapeNext(),image.getOpsConsumed()+1L,image.getUserData()));
+                map.put("vm", vm);
+                Focalworks.CONTEXT.set(map);
                 args2.set(List.of(new Vec3Iota(target.getCenter()),top));
             }
         });

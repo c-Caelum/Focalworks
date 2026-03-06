@@ -4,6 +4,7 @@ package caelum.focalworks.mixin.ioticblocks_specials.OpWriteIndex;
 import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
+import at.petrak.hexcasting.api.casting.eval.vm.CastingImage;
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import caelum.focalworks.Focalworks;
@@ -70,6 +71,7 @@ public class MixinOpWriteIndex {
             CastingVM vm = (CastingVM) map.get("vm");
             Pair<Iota, Boolean> result = RiggedHexFinder.cast_rigged_write_with_cancel(vm,hex);
             isNotCancelled = result.getSecond();
+            map.put("vm", vm);
             return result.getFirst();
         }
         return iota;
@@ -85,7 +87,10 @@ public class MixinOpWriteIndex {
             stack.add(datum);
             vm.setImage(RiggedHexFinder.set_image_stack(vm.getImage(),stack));
             Pair<Iota, Boolean> result = RiggedHexFinder.cast_rigged_write_with_cancel(vm,hex);
+            vm.setImage(vm.getImage().withUsedOp());
             isNotCancelled = result.getSecond();
+            map.put("vm", vm);
+            Focalworks.CONTEXT.set(map);
             return result.getFirst();
         }
         return datum;
