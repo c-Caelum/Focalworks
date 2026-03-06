@@ -35,6 +35,7 @@ key = "mod_version"
 
 # Python dependencies
 
+[tool.uv]
 override-dependencies = [
     "hexdoc-hexcasting==0.11.3.*", # lots of addons depend on hex ~= 0.11.2.1.0, which prevents us from updating it :/
 ]

@@ -38,6 +38,9 @@ public class OpCrackRig implements ConstMediaAction {
             throw new MishapAlreadyRigged(new EntityIota(entity),true);
         } else {
             NBTHelper.putInt(stack,"cracked_rig",1);
+            if (env.getCastingEntity() != null) {
+                NBTHelper.putUUID(stack, "crackedriguuid", env.getCastingEntity().getUUID());
+            }
         }
         return List.of();
     }

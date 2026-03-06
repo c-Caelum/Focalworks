@@ -44,6 +44,9 @@ public class OpRigWrite implements ConstMediaAction {
         } else {
             CompoundTag tag = IotaType.serialize(hex);
             NBTHelper.put(stack,"riggedwrite",tag);
+            if (env.getCastingEntity() != null) {
+                NBTHelper.putUUID(stack, "riggedwriteuuid", env.getCastingEntity().getUUID());
+            }
         }
         return List.of();
     }
