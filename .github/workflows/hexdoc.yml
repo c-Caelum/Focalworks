@@ -1,4 +1,4 @@
-name: "[Reusable] Build and publish a hexdoc plugin with a web book"
+name: "web book"
 
 on:
   workflow_call:
